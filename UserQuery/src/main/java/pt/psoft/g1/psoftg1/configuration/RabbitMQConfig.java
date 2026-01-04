@@ -1,0 +1,22 @@
+package pt.psoft.g1.psoftg1.configuration;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+
+@Configuration
+public class RabbitMQConfig {
+
+    public static final String USER_CREATED_QUEUE = "user.created.queue";
+
+    @Bean
+    public Queue userCreatedQueue() {
+        return new Queue(USER_CREATED_QUEUE, true);
+    }
+
+    @Bean
+    public Jackson2JsonMessageConverter jacksonConverter() {
+        return new Jackson2JsonMessageConverter();
+    }
+}
